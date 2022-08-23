@@ -1,10 +1,11 @@
 'use strict';
+var fs = require('fs');
 
 //Loading dependencies & initializing express
 var os = require('os');
 var express = require('express');
 var app = express();
-var http = require('http');
+var https = require('https');
 //For signalling in WebRTC
 var socketIO = require('socket.io');
 
@@ -15,7 +16,12 @@ app.get("/", function(req, res){
 	res.render("index.ejs");
 });
 
-var server = http.createServer(app);
+var options = {
+	key: fs.readFileSync('/Users/300070340/Documents/hackathon/videoChat-WebFrontend/client-key.pem'),
+	cert: fs.readFileSync('/Users/300070340/Documents/hackathon/videoChat-WebFrontend/client-cert.pem')
+};
+
+var server = https.createServer(options,app);
 
 server.listen(process.env.PORT || 8000);
 

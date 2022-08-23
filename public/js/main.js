@@ -22,7 +22,8 @@ var localStreamConstraints = {
 //var room = 'foo';
 
 // Prompting for room name:
-var room = prompt('Enter room name:');
+// var room = prompt('Enter room name:');
+var room = "test1";
 
 //Initializing socket.io
 var socket = io.connect();
@@ -36,6 +37,14 @@ if (room !== '') {
 socket.on('created', function(room) {
   console.log('Created room ' + room);
   isInitiator = true;
+  
+  localVideo = document.querySelector('#localVideo');
+  console.log("Going to find screen media");
+  navigator.mediaDevices.getDisplayMedia(localStreamConstraints) // screen
+  .then(gotStream)
+  .catch(function(e) {
+    alert('getUserMedia() error: ' + e.name);
+  });
 });
 
 socket.on('full', function(room) {
@@ -45,12 +54,20 @@ socket.on('full', function(room) {
 socket.on('join', function (room){
   console.log('Another peer made a request to join room ' + room);
   console.log('This peer is the initiator of room ' + room + '!');
+  console.log(document.querySelector('#remotevideo'));
   isChannelReady = true;
 });
 
 socket.on('joined', function(room) {
   console.log('joined: ' + room);
   isChannelReady = true;
+  localVideo = document.querySelector('#localVideo');
+  console.log("Going to find Camera media");
+  navigator.mediaDevices.getUserMedia(localStreamConstraints) //video
+  .then(gotStream)
+  .catch(function(e) {
+    alert('getUserMedia() error: ' + e.name);
+  });
 });
 
 socket.on('log', function(array) {
@@ -93,18 +110,13 @@ function sendMessage(message, room) {
 
 
 //Displaying Local Stream and Remote Stream on webpage
-var localVideo = document.querySelector('#localVideo');
-var remoteVideo = document.querySelector('#remoteVideo');
-console.log("Going to find Local media");
-navigator.mediaDevices.getUserMedia(localStreamConstraints)
-.then(gotStream)
-.catch(function(e) {
-  alert('getUserMedia() error: ' + e.name);
-});
+ var localVideo = document.querySelector('#localVideo');
+
+
 
 //If found local stream
 function gotStream(stream) {
-  console.log('Adding local stream.');
+  console.log('Adding local stream.', localVideo);
   localStream = stream;
   localVideo.srcObject = stream;
   sendMessage('got user media', room);

@@ -134,25 +134,19 @@ body {
 	}
 	
 	.local_div {
-		width:33%;
-		float:left
+		width:20%;
 	}
 
 	.remote_div {
-		width:33%;
-		float:left
-	}
-
-	.remote2_div {
-		width:33%;
+		width:80%;
 		float:left
 	}
 
 	#video_container {
 		display: flex;
-		width: 85%;
-		margin: auto;
-		height: 80% 
+		height: 100vh;
+		overflow: hidden;
+		
 	}
 	
 	video {
@@ -232,20 +226,15 @@ body {
 	}
 
 	.local_div {
-		display: flex
-		;
-		width: 100%;
+		display: flex;
 		position:relative;
-    overflow:hidden;
-    z-index:-1;
+    	overflow:hidden;
+    	z-index:-1;
 	}
 
 	.remote_div {
-		width: 120px;
+		width: 20%;
 		display: block;
-		position:absolute;
-		top:0px;
-		right:0px;
 		z-index:1;
 	}
 
