@@ -18,6 +18,14 @@ var localStreamConstraints = {
   };
 
 
+var videoStreamConstraints = {
+  audio: true,
+  video: true,
+  preferCurrentTab: true
+};
+  
+
+
 //Not prompting for room name
 //var room = 'foo';
 
@@ -40,7 +48,7 @@ socket.on('created', function(room) {
   
   localVideo = document.querySelector('#localVideo');
   console.log("Going to find screen media");
-  navigator.mediaDevices.getDisplayMedia(localStreamConstraints) // screen
+  navigator.mediaDevices.getDisplayMedia(videoStreamConstraints) // screen
   .then(gotStream)
   .catch(function(e) {
     alert('getUserMedia() error: ' + e.name);
