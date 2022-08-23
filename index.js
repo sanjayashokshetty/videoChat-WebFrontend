@@ -17,8 +17,8 @@ app.get("/", function(req, res){
 });
 
 var options = {
-	key: fs.readFileSync('/Users/300070340/Documents/hackathon/videoChat-WebFrontend/client-key.pem'),
-	cert: fs.readFileSync('/Users/300070340/Documents/hackathon/videoChat-WebFrontend/client-cert.pem')
+	key: fs.readFileSync('client-key.pem'),
+	cert: fs.readFileSync('client-cert.pem')
 };
 
 var server = https.createServer(options,app);
