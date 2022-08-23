@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/webtutsplus/videoChat-WebFrontend#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
     "socket.io": "^1.2.0"

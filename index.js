@@ -9,6 +9,11 @@ var https = require('https');
 //For signalling in WebRTC
 var socketIO = require('socket.io');
 
+const cors = require('cors');
+
+app.use(cors({
+    origin: '*'
+}));
 
 app.use(express.static('public'))
 
